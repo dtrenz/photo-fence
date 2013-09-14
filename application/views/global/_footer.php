@@ -1,0 +1,1 @@
+<? $this->load->view('global/_page_close') ?>

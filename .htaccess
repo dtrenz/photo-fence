@@ -1,0 +1,27 @@
+RewriteEngine On
+
+# begin URL rewriting
+<IfModule mod_rewrite.c>
+    # redirect no subdomain to www (uncomment if you want www)
+    # RewriteCond %{HTTP_HOST} ^mydomain.com(.*)$ [NC,OR]
+
+    # remove www as subdomain (uncomment if you don't want www)
+    # RewriteCond %{HTTP_HOST} ^mydomain.com(.*)$ [NC,OR]
+
+    # favicon
+    RewriteRule ^favicon\.ico$ /assets/images/favicon.ico [L]
+
+    # redirect static assets
+    RewriteCond $1 ^(css|js|images)
+    RewriteRule ^(.*)$ /assets/$1 [L]
+
+    # the most important rule - makes CI work w/o index.php in URL
+    RewriteCond $1 !^(index\.php|robots\.txt|assets)
+    RewriteRule ^(.*)$ /index.php/$1 [L]
+</IfModule>
+
+# webfont MIME types
+AddType application/vnd.ms-fontobject .eot
+AddType font/ttf .ttf
+AddType font/otf .otf
+AddType application/font-woff .woff
