@@ -7,14 +7,16 @@ Browse photos that were taken within a given time/location window.
 Requirements
 ------------
 * PHP
-* Ruby
+* Ruby (https://rvm.io/rvm/install)
 * Ruby Bundler (http://bundler.io/)
 
 
 Set-up
 ------
-1. Run bundler to install Ruby gem dependencies
-``$ bundler install``
+* Run bundler to install Ruby gem dependencies:
 
-2. Compile asset files locally
-``$ cap assets:compile``
+    ``$ bundler install``
+
+* Compile asset files locally
+
+    ``$ cap assets:compile``
