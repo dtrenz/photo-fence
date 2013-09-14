@@ -17,6 +17,6 @@ Set-up
 
     ``$ bundler install``
 
-* Compile asset files locally
+* Compile asset files using Capistrano (i.e. SCSS, Compass sprites, JS AMD modules using RequireJS)
 
     ``$ cap assets:compile``
