@@ -15,7 +15,7 @@ Set-up
 ------
 * Run bundler to install Ruby gem dependencies:
 
-    ``$ bundler install``
+    ``$ bundle install``
 
 * Compile asset files using Capistrano (i.e. SCSS, Compass sprites, JS AMD modules using RequireJS)
 

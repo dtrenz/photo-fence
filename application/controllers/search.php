@@ -1,26 +1,28 @@
-<?php if ( ! defined('BASEPATH') ) exit('No direct script access allowed');
+<?php
 
 /**
  * Search controller
+ * 
  * @package default
+ * @author Dan Trenz <dtrenz@gmail.com>
  */
 class Search extends CI_Controller
 {
 
-    /**
+    /**  
      * Default search controller method
      */
-    public function index()
+    public function index()        
     {
         $response = false;
+   
+        $params = $this->input->get();
 
-        $query = $this->input->get();
-
-        if ( ! empty($query['start-date']) && ! empty($query['location']) ) {
+        // if ( ! empty($params['start-date']) && ! empty($params['location']) ) {
             $this->load->model('search_model');
 
-            $response = $this->search_model->get_photos( $query );
-        }
+            $response = $this->search_model->get_photos( $params );
+        // }
 
         echo( json_encode($response) );
     }

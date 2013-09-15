@@ -3,5 +3,7 @@
 */logs/!index.html
 */cache/*
 */cache/!index.html
-/assets/css/*
-/assets/js/main.min.js
+assets/.sass-cache/*
+assets/.sass-cache/
+assets/css/*
+assets/js/main.min.js

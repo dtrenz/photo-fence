@@ -2,7 +2,9 @@
 
 /**
  * Homepage controller
+ * 
  * @package default
+ * @author Dan Trenz <dtrenz@gmail.com>
  */
 class Home extends CI_Controller
 {
@@ -12,6 +14,7 @@ class Home extends CI_Controller
      */
 	public function index()
 	{
+		// phpinfo();exit;
         // load the view
 		$this->load->view( 'home.php' );
 	}
