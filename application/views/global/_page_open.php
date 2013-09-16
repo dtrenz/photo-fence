@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
-        <title>Foundation 4</title>
+        <title>PhotoFence</title>
         <link rel="stylesheet" href="/css/app.css">
         <script src="/js/vendor/modernizr.js"></script>
     </head>

@@ -5,7 +5,7 @@
 		<ul class="title-area">
 			<li class="name">
 				<h1>
-					<a href="/">NameThis</a>
+					<a href="/">PhotoFence</a>
 				</h1>
 			</li>
 		</ul>
