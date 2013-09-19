@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Search model
- * 
+ * Photos model
+ *
  * @package default
  * @author Dan Trenz <dtrenz@gmail.com>
  */
-class Search_model extends CI_Model
+class Photos_model extends CI_Model
 {
 
     /**
@@ -15,7 +15,7 @@ class Search_model extends CI_Model
      * @param array $params
      * @return array
      */
-    public function get_photos( $params )
+    public function search( $params )
     {
         $photos = array();
 
@@ -25,7 +25,7 @@ class Search_model extends CI_Model
         $max_timestamp = 1357023600;
 
         // search flickr for photos
-        $flickr_photos = $this->_get_photos_from_flickr( $latitude, $longitude, $min_timestamp, $max_timestamp );
+        $flickr_photos = $this->_search_flickr( $latitude, $longitude, $min_timestamp, $max_timestamp );
 
         // merge all photos into one photo array
         $photos = array_merge( $flickr_photos );
@@ -36,13 +36,13 @@ class Search_model extends CI_Model
     /**
      * Find photos on Flickr that satisfy the search criteria.
      *
-     * @param float $latitude  
-     * @param float $longitude  
-     * @param int $min_timestamp  
-     * @param int $max_timestamp  
+     * @param float $latitude
+     * @param float $longitude
+     * @param int $min_timestamp
+     * @param int $max_timestamp
      * @return array
      */
-    private function _get_photos_from_flickr( $latitude, $longitude, $min_timestamp, $max_timestamp )
+    private function _search_flickr( $latitude, $longitude, $min_timestamp, $max_timestamp )
     {
         $photos = array();
 
@@ -67,18 +67,18 @@ class Search_model extends CI_Model
         $response = $flickr->request( 'flickr.photos.search', $params );
 
         // if we found photos...
-        if ( ! empty($response) && 
-             ! empty($response['photos']) && 
+        if ( ! empty($response) &&
+             ! empty($response['photos']) &&
              ! empty($response['photos']['photo']) ) {
 
             // ...loop through them and append to the photos array
             foreach ( $response['photos']['photo'] as $photo ) {
                 // generate & append image url to photo array
                 $photos[] = Flickr::create_image_url($photo);
-            }            
+            }
         }
 
-        return $photos;        
+        return $photos;
     }
 
 }

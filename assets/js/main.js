@@ -1,6 +1,16 @@
 // Main config settings for RequireJS
 require.config({
+    waitSeconds : 15,
     paths: {
+        // RequireJS async plugin
+        async: 'vendor/require.async',
+
+        // RequireJS Google API loader plugin
+        goog: 'vendor/require.goog',
+
+        // Just a helper used by some plugins to parse arguments (not a real plugin).
+        propertyParser: 'vendor/propertyParser',
+
         // jQuery (local) - can't use CDN if we want to use requirejs to manage
         // jquery dependencies; and we do, so...
         jquery: 'vendor/jquery',
@@ -50,7 +60,8 @@ require([
     'jquery',
     'foundation',
     'spinner',
-    'lazyload'
+    'lazyload',
+    'app/autocomplete'
 
     /*
     * optional Foundation JS widgets
