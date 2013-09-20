@@ -9,6 +9,17 @@
 class Search extends CI_Controller
 {
 
+    public function places( $query )
+    {
+        $this->load->model('places_model');
+
+        $query = urlencode( $query );
+
+        $results = $this->places_model->autocomplete( $query );
+
+        echo( json_encode($results) );
+    }
+
     /**
      * Photo search controller method
      */
@@ -18,27 +29,15 @@ class Search extends CI_Controller
 
         $params = $this->input->get();
 
-        // if ( ! empty($params['start-date']) && ! empty($params['location']) ) {
+        if ( ! empty($params['date']) && ! empty($params['location']) ) {
+            $this->load->model('places_model');
             $this->load->model('photos_model');
 
-            $response = $this->photos_model->search( $params );
-        // }
+            $coords = $this->places_model->coords( $params['location'] );
 
-        echo( json_encode($response) );
-    }
+            $timestamp = strtotime( $params['date'] );
 
-    public function places( $query )
-    {
-        $response = false;
-
-        $this->load->model('places_model');
-
-        $query = urlencode( $query );
-
-        $response = $this->places_model->autocomplete( $query );
-
-        if ( ! empty($response) ) {
-            $response = $this->places_model->details( $response[0]->reference );
+            $response = $this->photos_model->search( $coords, $timestamp );
         }
 
         echo( json_encode($response) );

@@ -18,7 +18,8 @@
     </div>
 
 	<div class="large-5 columns half-gutter">
-        <input type="text" name="location" id="search-location" placeholder="location" required>
+        <input type="hidden" name="location">
+        <input type="text" id="search-location" placeholder="Location Name">
     </div>
 
 	<div class="large-1 columns half-gutter">

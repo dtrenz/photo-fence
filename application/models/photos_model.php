@@ -15,17 +15,19 @@ class Photos_model extends CI_Model
      * @param array $params
      * @return array
      */
-    public function search( $params )
+    public function search( $coords, $timestamp )
     {
         $photos = array();
 
-        $latitude  = 40.759011;
-        $longitude = -73.984472;
-        $min_timestamp = 1356991200;
-        $max_timestamp = 1357023600;
+        // $latitude  = 40.759011;
+        // $longitude = -73.984472;
+        // $min_timestamp = 1356991200;
+        // $max_timestamp = 1357023600;
+
+        $max_timestamp = strtotime( '+1 day', $timestamp );
 
         // search flickr for photos
-        $flickr_photos = $this->_search_flickr( $latitude, $longitude, $min_timestamp, $max_timestamp );
+        $flickr_photos = $this->_search_flickr( $coords->lat, $coords->lng, $timestamp, $max_timestamp );
 
         // merge all photos into one photo array
         $photos = array_merge( $flickr_photos );

@@ -22,34 +22,39 @@ class Places_model extends CI_Model
 
     public function autocomplete( $input )
     {
-        $return = false;
+        $results = array();
 
         $response = self::$places_client->autocomplete( $input );
 
         if ( isset($response->predictions) ) {
-            $return = $response->predictions;
+            foreach( $response->predictions as $place ) {
+                $result = new stdClass();
+                $result->name      = $place->description;
+                $result->value     = $place->description;
+                $result->reference = $place->reference;
+
+                $results[] = $result;
+            }
         }
 
-        return $return;
+        return $results;
     }
 
-    public function details( $reference )
+    public function coords( $reference )
     {
-        $place = false;
+        $coords = false;
 
         $response = self::$places_client->details( $reference );
 
         if ( isset($response->result) &&
-             isset($response->result->name) &&
+             isset($response->result->geometry) &&
              isset($response->result->geometry->location) ) {
 
-            $place = new stdClass();
-            $place->name     = $response->result->name;
-            $place->location = $response->result->geometry->location;
+            $coords = $response->result->geometry->location;
 
         }
 
-        return $place;
+        return $coords;
     }
 
 }
